@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+
+# Secrets
+.env
+
+# Dữ liệu, chỉ mục, cache, kết quả trung gian (lớn / tái tạo được)
+data/raw/*
+!data/raw/vi_docs/
+!data/raw/vi_questions.jsonl
+data/processed/
+indexes/
+.cache/
+results/**/*.jsonl
+!results/.gitkeep
+
+# Editor
+.vscode/
+.idea/

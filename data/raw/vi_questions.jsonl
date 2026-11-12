@@ -1,0 +1,6 @@
+{"qid": "vi-001", "question": "Mã học phần và số tín chỉ của môn Xử lý ngôn ngữ tự nhiên là bao nhiêu?", "answers": ["IT4868, 3 tín chỉ"]}
+{"qid": "vi-002", "question": "Các học phần tiên quyết của môn Xử lý ngôn ngữ tự nhiên gồm những môn nào?", "answers": ["Nhập môn Học máy (IT4850) và Xác suất thống kê (MI2020)"]}
+{"qid": "vi-003", "question": "Tỷ trọng điểm Bài tập lớn và điểm Thi cuối kỳ của học phần lần lượt là bao nhiêu phần trăm?", "answers": ["Bài tập lớn 40%, Thi cuối kỳ 50%"]}
+{"qid": "vi-004", "question": "Điều kiện dự thi cuối kỳ và mức điểm liệt của học phần được quy định như thế nào?", "answers": ["Không vắng quá 20% số tiết, có nộp Bài tập lớn; điểm liệt dưới 3,0"]}
+{"qid": "vi-005", "question": "Phương pháp RAPTOR được giảng dạy ở tuần thứ mấy và sử dụng những kỹ thuật nào để xây dựng cây phân cấp?", "answers": ["Tuần 7; giảm chiều UMAP, phân cụm GMM và tóm tắt đệ quy"]}
+{"qid": "vi-006", "question": "Phương pháp SG-RAG giải quyết bài toán gì và được đánh giá trên bộ dữ liệu nào?", "answers": ["Exact Retrieval Problem (ERP) trên bộ dữ liệu ERQA"]}

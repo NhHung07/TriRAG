@@ -1,0 +1,6 @@
+[submodule "third_party/raptor"]
+	path = third_party/raptor
+	url = https://github.com/parthsarthi03/raptor
+[submodule "third_party/SG-RAG"]
+	path = third_party/SG-RAG
+	url = https://github.com/CAU-X-AI-Lab/SG-RAG

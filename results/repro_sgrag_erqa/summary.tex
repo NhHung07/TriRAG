@@ -1,0 +1,17 @@
+% Bảng chất lượng chính
+\begin{tabular}{lrrrrrrrrrr}
+\toprule
+method & n & evidence\_recall & evidence\_all & recall@5 & all\_recall@5 & mrr & ndcg@10 & context\_tokens & retrieval\_ms\_p50 & generation\_ms\_p50 \\
+\midrule
+bm25 & 300 & 86.7 & 86.7 & 87.7 & 87.7 & 79.3 & 83.1 & 1,915.8 & 0.9 & -- \\
+\bottomrule
+\end{tabular}
+
+% Bảng chi phí lập chỉ mục
+\begin{tabular}{lrrrrr}
+\toprule
+method & index\_s & index\_llm\_calls & index\_llm\_in\_tok & index\_llm\_out\_tok & index\_mb \\
+\midrule
+bm25 & 0.0 & 0 & 0 & 0 & 1.6 \\
+\bottomrule
+\end{tabular}

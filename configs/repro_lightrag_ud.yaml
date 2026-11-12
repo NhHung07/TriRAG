@@ -1,0 +1,63 @@
+# Thực nghiệm (B2) — Tái lập thu nhỏ LightRAG trên UltraDomain (~150k token, 40 câu hỏi, chấm bằng LLM judge)
+experiment: repro_lightrag_ud
+seed: 42
+
+dataset:
+  name: ultradomain
+  path: data/raw/ultradomain/cs.jsonl
+  max_tokens: 150000
+  chunk_tokens: 1200
+  questions:
+    n_users: 2
+    n_tasks: 4
+    n_questions: 5  # 2 * 4 * 5 = 40 câu hỏi mức khái quát
+
+llm:
+  provider: gemini
+  model: gemini-2.5-flash
+  rpm: 10
+  thinking_budget: 0
+
+index_llm:
+  provider: gemini
+  model: gemini-2.5-flash-lite
+  rpm: 15
+  thinking_budget: 0
+
+# Nên đổi sang một model khác model sinh (VD OpenAI / Groq / OpenRouter qua JUDGE_API_KEY, JUDGE_BASE_URL)
+judge:
+  provider: openai_compat
+  model: gpt-4o-mini
+  rpm: 15
+
+embedding:
+  model: BAAI/bge-m3
+  device: auto
+  batch_size: 32
+  max_seq_length: 512
+
+retrieval:
+  top_k: 5
+  retrieve_k: 10
+  context_token_budget: 2000
+
+generation:
+  prompt: qa_long
+  max_tokens: 512
+  temperature: 0.0
+
+methods:
+  dense:
+    type: dense
+
+  lightrag:
+    type: lightrag
+    mode: hybrid
+    chunk_token_size: 1200
+    chunk_overlap_token_size: 100
+    max_gleaning: 0
+
+  lightrag_naive:
+    type: lightrag
+    mode: naive
+    share_index_from: lightrag

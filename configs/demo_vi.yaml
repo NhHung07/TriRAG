@@ -1,0 +1,69 @@
+# Thực nghiệm (C) & Demo — Hỏi đáp trên đề cương môn học tiếng Việt (50–70 trang PDF)
+experiment: demo_vi
+seed: 42
+
+dataset:
+  name: vi_docs
+  input_dir: data/raw/vi_docs
+  questions_path: data/raw/vi_questions.jsonl
+  max_tokens: 400
+  overlap_tokens: 50
+
+llm:
+  provider: gemini
+  model: gemini-2.5-flash
+  rpm: 10
+  thinking_budget: 0
+
+index_llm:
+  provider: gemini
+  model: gemini-2.5-flash-lite
+  rpm: 15
+  thinking_budget: 0
+
+embedding:
+  model: BAAI/bge-m3
+  device: auto
+  batch_size: 32
+  max_seq_length: 512
+
+retrieval:
+  top_k: 5
+  retrieve_k: 10
+  context_token_budget: 2000
+
+generation:
+  prompt: vi_cited
+  max_tokens: 384
+  temperature: 0.0
+
+methods:
+  bm25:
+    type: bm25
+
+  dense:
+    type: dense
+
+  hybrid:
+    type: hybrid
+    candidates: 30
+    rrf_k: 60
+    weights: [1.0, 1.2]
+    rerank: true
+    rerank_pool: 15
+    reranker_model: BAAI/bge-reranker-v2-m3
+
+  raptor:
+    type: raptor
+    mode: collapsed
+    leaf_tokens: 300
+    num_layers: 3
+
+  lightrag:
+    type: lightrag
+    mode: hybrid
+    language: Vietnamese
+
+  sgrag:
+    type: sgrag
+    max_star_subgraphs: 5

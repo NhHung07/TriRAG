@@ -1,0 +1,107 @@
+{
+  "git": "c6c473f",
+  "python": "3.11.18",
+  "platform": "Linux-7.0.0-43-generic-x86_64-with-glibc2.43",
+  "cpu_count": 12,
+  "torch": "2.15.0+cu132",
+  "cuda": "NVIDIA GeForce RTX 2050",
+  "config": {
+    "experiment": "hotpot_common",
+    "seed": 42,
+    "llm": {
+      "provider": "gemini",
+      "model": "gemini-2.5-flash",
+      "rpm": 10,
+      "thinking_budget": 0
+    },
+    "index_llm": {
+      "provider": "gemini",
+      "model": "gemini-2.5-flash-lite",
+      "rpm": 15,
+      "thinking_budget": 0
+    },
+    "judge": null,
+    "embedding": {
+      "model": "BAAI/bge-m3",
+      "device": "auto",
+      "batch_size": 32,
+      "query_prefix": "",
+      "doc_prefix": "",
+      "max_seq_length": 512
+    },
+    "retrieval": {
+      "top_k": 5,
+      "context_token_budget": 2000,
+      "retrieve_k": 10
+    },
+    "generation": {
+      "prompt": "qa_short",
+      "max_tokens": 64,
+      "temperature": 0.0
+    },
+    "methods": {
+      "bm25": {
+        "type": "bm25",
+        "k1": 1.5,
+        "b": 0.75
+      },
+      "dense": {
+        "type": "dense"
+      },
+      "hybrid": {
+        "type": "hybrid",
+        "candidates": 30,
+        "rrf_k": 60,
+        "weights": [
+          1.0,
+          1.2
+        ],
+        "rerank": true,
+        "rerank_pool": 20,
+        "reranker_model": "BAAI/bge-reranker-v2-m3"
+      },
+      "raptor": {
+        "type": "raptor",
+        "mode": "collapsed",
+        "leaf_tokens": 250,
+        "num_layers": 3,
+        "summarization_length": 150,
+        "reduction_dimension": 10,
+        "threshold": 0.1
+      },
+      "lightrag": {
+        "type": "lightrag",
+        "mode": "hybrid",
+        "chunk_token_size": 1200,
+        "chunk_overlap_token_size": 100,
+        "max_gleaning": 0
+      },
+      "lightrag_local": {
+        "type": "lightrag",
+        "mode": "local",
+        "share_index_from": "lightrag"
+      },
+      "lightrag_global": {
+        "type": "lightrag",
+        "mode": "global",
+        "share_index_from": "lightrag"
+      },
+      "lightrag_naive": {
+        "type": "lightrag",
+        "mode": "naive",
+        "share_index_from": "lightrag"
+      },
+      "sgrag": {
+        "type": "sgrag",
+        "max_star_subgraphs": 5
+      }
+    },
+    "dataset": {
+      "name": "hotpotqa",
+      "path": "data/raw/hotpot/hotpot_dev_distractor_v1.json",
+      "n_questions": 300,
+      "stratify": "balanced"
+    },
+    "_config_path": "configs/hotpot_common.yaml"
+  }
+}

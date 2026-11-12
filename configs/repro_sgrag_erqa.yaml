@@ -1,0 +1,63 @@
+# Thực nghiệm (B3) — Tái lập thu nhỏ SG-RAG trên FB-ERQA (300 câu hỏi đa điều kiện từ third_party/SG-RAG)
+experiment: repro_sgrag_erqa
+seed: 42
+
+dataset:
+  name: erqa
+  path: third_party/SG-RAG/SG-RAG-EXAMPLES
+  n_questions: 300
+  n_distractor_graphs: 100
+
+llm:
+  provider: gemini
+  model: gemini-2.5-flash
+  rpm: 10
+  thinking_budget: 0
+
+index_llm:
+  provider: gemini
+  model: gemini-2.5-flash-lite
+  rpm: 15
+  thinking_budget: 0
+
+embedding:
+  model: BAAI/bge-m3
+  device: auto
+  batch_size: 32
+  max_seq_length: 512
+
+retrieval:
+  top_k: 5
+  retrieve_k: 10
+  context_token_budget: 2000
+
+generation:
+  prompt: qa_short
+  max_tokens: 64
+  temperature: 0.0
+
+methods:
+  bm25:
+    type: bm25
+
+  dense:
+    type: dense
+
+  hybrid:
+    type: hybrid
+    candidates: 30
+    rerank: false
+
+  raptor:
+    type: raptor
+    mode: collapsed
+    leaf_tokens: 300
+    num_layers: 3
+
+  lightrag:
+    type: lightrag
+    mode: hybrid
+
+  sgrag:
+    type: sgrag
+    max_star_subgraphs: 5
